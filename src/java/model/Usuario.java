@@ -20,7 +20,7 @@ public class Usuario {
     @Column(name = "NOMBRE")
     private String nombre;
     
-    @Column(name = "APELLIDOS")
+    @Column(name = "APELLIDO")
     private String apellidos;
     
     @Column(name = "CORREO")
@@ -84,32 +84,5 @@ public class Usuario {
         this.password = password;
     }
 
-    public static Boolean getUsuario(String nickName) {
-        Connection connection = null;
-        Boolean result = null;
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/ISDCM;user=isdcm;password=isdcm");
-            connection.setAutoCommit(false);
-            Statement statement = connection.createStatement();
-            ResultSet u = statement.executeQuery("select * from USUARIOS");
-            
-            result = u.next();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return result;
-
-    }
 
 }
