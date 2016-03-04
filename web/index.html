@@ -1,19 +1,28 @@
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <title>Registro Usuarios</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div title="Registro Usuarios">
-            <form action = "registro" method = "post" onsubmit="return checkPassword(this.password.value)">
-                Nombre: <input type="text" name="nombre" required maxlength="50"><br>
-                Apellidos: <input type="text" name="apellidos" required maxlength="50"><br>
-                Correo electrónico: <input type="email" name="correo" required maxlength="255"><br>
-                Nombre usuario: <input type="text" name="nickName" required maxlength="50"><br>
-                Contraseña: <input type="password" name="password" required maxlength="50"><br>
-                Repetir contraseña: <input type="password" required name="repassword" ><br>
+        <div id="mystyle" class="myform" title="Registro Usuarios">
+            <form id="form" name="form" action = "registro" method = "post" onsubmit="return checkPassword(this.password.value)">
+                <h1>Registro de usuario</h1>
+                <p>Por favor, introduzca su información de registro</br>
+                <label> Nombre:</label>
+                <input type="text" name="nombre" required maxlength="50"><br>
+                <label> Apellidos:</label> 
+                <input type="text" name="apellidos" required maxlength="50"><br>
+                <label>Correo electrónico: </label>
+                <input type="email" name="correo" required maxlength="255"><br>
+                <label>Nombre usuario: </label>
+                <input type="text" name="nickName" required maxlength="50"><br>
+                <label>Contraseña:</label> 
+                <input type="password" name="password" required maxlength="50"><br>
+                <label>Repetir contraseña: </label>
+                <input type="password" required name="repassword" ><br>
                 <button type="submit">Registrar usuario</button>
             </form>
 
