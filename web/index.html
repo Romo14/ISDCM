@@ -6,26 +6,36 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
         <title>Registro Usuarios</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div id="mystyle" title="Registro Usuarios" class="myform">
-            <form id="form" name="form" action = "registro" method = "post">
-                <h1>Registro usuarios</h1>
-                <p>Por favor, introduzca su información de usuario
-                <label>Nombre:</label> 
-                <input type="text" name="nombre" value=""><br>
-                Apellidos: <input type="text" name="apellidos" value=""><br>
-                Correo electrónico: <input type="text" name="correo" value=""><br>
-                Nombre usuario: <input type="text" name="nickName" value=""><br>
-                Contraseña: <input type="password" name="password" value=""><br>
-                Repetir contraseña: <input type="password" name="repassword" ><br>
+        <div title="Registro Usuarios">
+            <form action = "registro" method = "post" onsubmit="return checkPassword(this.password.value)">
+                Nombre: <input type="text" name="nombre" required="true" maxlength="50"><br>
+                Apellidos: <input type="text" name="apellidos" required="true" maxlength="50"><br>
+                Correo electrónico: <input type="email" name="correo" required="true" maxlength="255"><br>
+                Nombre usuario: <input type="text" name="nickName" required="true" maxlength="50"><br>
+                Contraseña: <input type="password" name="password" required="true" maxlength="50"><br>
+                Repetir contraseña: <input type="password" required="true" name="repassword" ><br>
                 <button type="submit">Registrar usuario</button>
             </form>
 
         </div>
     </body>
 </html>
+
+<script type="text/javascript">
+
+    function checkPassword(str)
+    {
+        return true;
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+        if (!re.test(str)) {
+            alert("El password debe contener al menos 6 carácteres, una letra mayúscula, una minúscula y un número");
+            return false;
+        }
+    }
+
+</script>

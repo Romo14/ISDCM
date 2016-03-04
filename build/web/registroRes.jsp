@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Resultado</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>${message}</h1>
+        <a href="index.html">Volver a la página de registro</a>
     </body>
 </html>
