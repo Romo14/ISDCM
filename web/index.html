@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>Registro Usuarios</title>
@@ -13,29 +8,29 @@ and open the template in the editor.
     <body>
         <div title="Registro Usuarios">
             <form action = "registro" method = "post" onsubmit="return checkPassword(this.password.value)">
-                Nombre: <input type="text" name="nombre" required="true" maxlength="50"><br>
-                Apellidos: <input type="text" name="apellidos" required="true" maxlength="50"><br>
-                Correo electrónico: <input type="email" name="correo" required="true" maxlength="255"><br>
-                Nombre usuario: <input type="text" name="nickName" required="true" maxlength="50"><br>
-                Contraseña: <input type="password" name="password" required="true" maxlength="50"><br>
-                Repetir contraseña: <input type="password" required="true" name="repassword" ><br>
+                Nombre: <input type="text" name="nombre" required maxlength="50"><br>
+                Apellidos: <input type="text" name="apellidos" required maxlength="50"><br>
+                Correo electrónico: <input type="email" name="correo" required maxlength="255"><br>
+                Nombre usuario: <input type="text" name="nickName" required maxlength="50"><br>
+                Contraseña: <input type="password" name="password" required maxlength="50"><br>
+                Repetir contraseña: <input type="password" required name="repassword" ><br>
                 <button type="submit">Registrar usuario</button>
             </form>
 
         </div>
+        <script type="text/javascript">
+            function checkPassword(str)
+            {
+                return true;
+                var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+                if (!re.test(str)) {
+                    alert("El password debe contener al menos 6 carácteres, una letra mayúscula, una minúscula y un número");
+                    return false;
+                }
+            }
+
+        </script>
     </body>
 </html>
 
-<script type="text/javascript">
 
-    function checkPassword(str)
-    {
-        return true;
-        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
-        if (!re.test(str)) {
-            alert("El password debe contener al menos 6 carácteres, una letra mayúscula, una minúscula y un número");
-            return false;
-        }
-    }
-
-</script>
