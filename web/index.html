@@ -6,14 +6,18 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
         <title>Registro Usuarios</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div title="Registro Usuarios">
-            <form action = "registro" method = "post">
-                Nombre: <input type="text" name="nombre" value=""><br>
+        <div id="mystyle" title="Registro Usuarios" class="myform">
+            <form id="form" name="form" action = "registro" method = "post">
+                <h1>Registro usuarios</h1>
+                <p>Por favor, introduzca su información de usuario
+                <label>Nombre:</label> 
+                <input type="text" name="nombre" value=""><br>
                 Apellidos: <input type="text" name="apellidos" value=""><br>
                 Correo electrónico: <input type="text" name="correo" value=""><br>
                 Nombre usuario: <input type="text" name="nickName" value=""><br>
