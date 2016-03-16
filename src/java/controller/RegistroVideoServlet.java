@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
+import model.Video;
 import service.RegistroUsuService;
+import service.RegistroVideoService;
 
 @WebServlet(name = "registroVideo", urlPatterns = {"/registroVideo"})
 public class RegistroVideoServlet  extends HttpServlet {
@@ -38,17 +40,12 @@ public class RegistroVideoServlet  extends HttpServlet {
         String formato = request.getParameter("formato");
 
         String message = "";
-        /*
-            Usuario usuario = new Usuario(nombre, apellidos, correo, nickname, password);
-            RegistroUsuService registerService = new RegistroUsuService();
-            message = registerService.registrar(usuario);
-
-        try {
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("registroRes.jsp").forward(request, response);
-        } catch (IOException | ServletException ex) {
-            Logger.getLogger(RegistroUsuServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        Video video = new Video(id, titulo, autor, fechaCreacion, duracion, reproducciones, descripcion, formato);
+        RegistroVideoService registerService = new RegistroVideoService();
+        message = registerService.registrar(video);
+       
+        request.setAttribute("message", message);
+   
     }
     
     //També s'ha de fer un doGet per consultes de video

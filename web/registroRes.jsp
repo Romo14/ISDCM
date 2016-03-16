@@ -14,18 +14,14 @@
     <body>
         <h1>${message}</h1>
         <c:choose>
-            <c:when test="${message=='Las contraseñas no son iguales!'}">
+            <c:when test="${message == ""}">
                 <a href="index.html">Volver a la página de registro</a>
                 <br />
             </c:when>
-            <c:when test="${message=='El usuario ya existe'}">
-                <a href="index.html">Volver a la página de registro</a>
-                <br />
-            </c:when>
-            <c:otherwise>
+            <c:when test="${message == ""}">
                 <a href="videoManagement.html">Continuar</a>
                 <br />
-            </c:otherwise>
+            </c:when>
         </c:choose>
     </body>
 </html>

@@ -30,6 +30,7 @@ public class RegistroUsuServlet extends HttpServlet {
         String repassword = request.getParameter("repassword");
 
         String message = "";
+
         if (password.equals(repassword)) {
             Usuario usuario = new Usuario(nombre, apellidos, correo, nickname, password);
             RegistroUsuService registerService = new RegistroUsuService();

@@ -8,5 +8,6 @@
     <property name="hibernate.connection.username">isdcm</property>
     <property name="hibernate.connection.password">isdcm</property>
     <mapping class="model.Usuario"/>
+    <mapping class="model.Video"/>
   </session-factory>
 </hibernate-configuration>
