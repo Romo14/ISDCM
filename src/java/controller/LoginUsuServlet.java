@@ -84,8 +84,8 @@ public class LoginUsuServlet extends HttpServlet {
 
      
         LoginUsuService loginService = new LoginUsuService();
-        boolean result = loginService.comprobar(nickname,password);
-        if(result){
+        Boolean result = loginService.comprobar(nickname,password);
+        if(!result){
             message="No coinciden el usuario y contraseña";
         }
         if(result){
@@ -93,9 +93,10 @@ public class LoginUsuServlet extends HttpServlet {
         }
         try {
             request.setAttribute("message", message);
+            request.setAttribute("result",result);
             request.getRequestDispatcher("registroRes.jsp").forward(request, response);
         } catch (IOException | ServletException ex) {
-            Logger.getLogger(RegistroUsuServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginUsuServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Boolean result = (Boolean)request.getAttribute("result");%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,15 +15,11 @@
     </head>
     <body>
         <h1>${message}</h1>
-        <c:choose>
-            <c:when test="${message == ""}">
+            <% if (!result){%>
                 <a href="index.html">Volver a la página de registro</a>
-                <br />
-            </c:when>
-            <c:when test="${message == ""}">
+            <%} else{%>
                 <a href="videoManagement.html">Continuar</a>
-                <br />
-            </c:when>
-        </c:choose>
+            <%}%>
+
     </body>
 </html>

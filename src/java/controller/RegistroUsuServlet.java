@@ -30,16 +30,25 @@ public class RegistroUsuServlet extends HttpServlet {
         String repassword = request.getParameter("repassword");
 
         String message = "";
+        Boolean result=false;
 
         if (password.equals(repassword)) {
             Usuario usuario = new Usuario(nombre, apellidos, correo, nickname, password);
             RegistroUsuService registerService = new RegistroUsuService();
             message = registerService.registrar(usuario);
+            if (message.equals("El usuario ya existe")){
+                result=false;
+            }
+            else if (message.equals("Registro realizado correctamente")){
+                result=true;
+            }
         } else {
             message = "Las contraseñas no son iguales!";
+            result=false;
         }
         try {
             request.setAttribute("message", message);
+            request.setAttribute("result", result);
             request.getRequestDispatcher("registroRes.jsp").forward(request, response);
         } catch (IOException | ServletException ex) {
             Logger.getLogger(RegistroUsuServlet.class.getName()).log(Level.SEVERE, null, ex);
