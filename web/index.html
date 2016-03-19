@@ -26,8 +26,15 @@
                 <button type="submit">Registrar usuario</button>
             </form>
         </div>
-        <div id="mystyle" class="myform">
-            <h1>Log in</h1>
+        <div id="mystyle" class="myform" title="Log in">
+            <form id="form" name="form" action = "login" method = "post">
+             <h1>Log in</h1>
+                <label> Nombre usuario:</label>
+                <input type="text" name="nickName" required maxlength="50"><br>
+                <label> Constraseña:</label>
+                <input type="text" name="password" required maxlength="50"><br>
+                <button type="submit">Log in</button>
+            </form>
         </div>
         <script type="text/javascript">
             function checkPassword(str)
