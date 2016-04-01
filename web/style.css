@@ -8,78 +8,167 @@ and open the template in the editor.
     Author     : Marc
 */
 
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
 root {
-display: block;
+    display: block;
 }
 body{
-font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
-font-size:12px;
+    font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
 }
 p, h1, form, button{border:0; margin:0; padding:0;}
 .spacer{clear:both; height:1px;}
 .myform{
-margin:0 auto;
-width:400px;
-padding:14px;
+    margin:0 auto;
+    width:400px;
+    padding:14px;
+    margin-bottom:2px; 
+}
+.login {
+    margin:0 auto;
+    width:400px;
+    padding:14px;
+    margin-bottom:2px;
+    margin-top: 20px;
 }
 
 #mystyle{
-border:solid 2px burlywood;
-background: antiquewhite;
-border-radius: 5px;
+    border:solid 2px burlywood;
+    background: antiquewhite;
+    border-radius: 5px;
 }
 #mystyle h1 {
-font-size:14px;
-font-weight:bold;
-margin-bottom:8px;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:8px;
 }
+
+#mystyle h2 {
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
 #mystyle p{
-font-size:11px;
-color:#666666;
-margin-bottom:20px;
-border-bottom:solid 1px burlywood;
-padding-bottom:10px;
+    font-size:11px;
+    color:#666666;
+    margin-bottom:20px;
+    border-bottom:solid 1px burlywood;
+    padding-bottom:10px;
 }
 #mystyle label{
-display:block;
-font-weight:bold;
-text-align:right;
-width:140px;
-float:left;
+    display:block;
+    font-weight:bold;
+    text-align:right;
+    width:140px;
+    float:left;
 }
 #mystyle .small{
-color:#666666;
-display:block;
-font-size:11px;
-font-weight:normal;
-text-align:right;
-width:140px;
+    color:#666666;
+    display:block;
+    font-size:11px;
+    font-weight:normal;
+    text-align:right;
+    width:140px;
 }
 #mystyle input{
-float:left;
-font-size:12px;
-padding:4px 2px;
-border:solid 1px burlywood;
-width:200px;
-margin:2px 0 20px 10px;
-border-radius: 5px;
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px burlywood;
+    width:200px;
+    margin:0px 0 20px 10px;
+    border-radius: 5px;
 }
 #mystyle button{
-clear:both;
-margin-left:150px;
-width:125px;
-height:31px;
-background:#666666;
-text-align:center;
-line-height:31px;
-color:#FFFFFF;
-font-size:11px;
-font-weight:bold;
-border-radius: 5px;
+    clear:both;
+    margin-left:150px;
+    width:125px;
+    height:31px;
+    background:#666666;
+    text-align:center;
+    line-height:31px;
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:bold;
+    border-radius: 5px;
 }
+
+#mystyle a {
+    font-size: 16px;
+}
+
+#mystyle a:link {
+    text-decoration: none;
+}
+
+#mystyle a:visited {
+    text-decoration: none;
+}
+
+#mystyle a:hover {
+    text-decoration: underline;
+}
+
+#mystyle a:active {
+    text-decoration: underline;
+}
+
 table, tr, td{
-border-radius: 5px;
-border:solid 1px burlywood;
-padding: 5px;
-width: max-content;
+    border-radius: 5px;
+    border:solid 1px burlywood;
+    padding: 5px;
+    width: max-content;
+}
+
+
+.message-info, .message-success, .message-warning, .message-error {
+    padding:10px;
+    margin:10px 0;
+}
+.message-info:before, .message-success:before, .message-warning:before, .message-error:before {
+    font-family:FontAwesome;
+    font-style:normal;
+    font-weight:400;
+    speak:none;
+    display:inline-block;
+    text-decoration:inherit;
+    width:1em;
+    margin-right:.2em;
+    text-align:center;
+    font-variant:normal;
+    text-transform:none;
+    line-height:1em;
+    margin-left:.2em;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
+}
+.message-info:before {
+    content:"\f05a";
+}
+.message-success:before {
+    content:'\f00c';
+}
+.message-warning:before {
+    content:'\f071';
+}
+.message-error:before {
+    content:'\f057';
+}
+.message-info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.message-success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.message-warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.message-error {
+    color: #D8000C;
+    background-color: #FFBABA;
 }

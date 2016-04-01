@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Usuario;
 import service.LoginUsuService;
 
 /**
@@ -41,7 +40,7 @@ public class LoginUsuServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginUsuServlet</title>");            
+            out.println("<title>Servlet LoginUsuServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginUsuServlet at " + request.getContextPath() + "</h1>");
@@ -82,18 +81,17 @@ public class LoginUsuServlet extends HttpServlet {
 
         String message = "";
 
-     
         LoginUsuService loginService = new LoginUsuService();
-        Boolean result = loginService.comprobar(nickname,password);
-        if(!result){
-            message="No coinciden el usuario y contraseña";
+        Boolean result = loginService.comprobar(nickname, password);
+        if (!result) {
+            message = "ERROR: No coinciden el usuario y contraseña";
         }
-        if(result){
-            message="Log in con exito";
+        if (result) {
+            message = "Log in con exito";
         }
         try {
             request.setAttribute("message", message);
-            request.setAttribute("result",result);
+            request.setAttribute("result", result);
             request.getRequestDispatcher("registroRes.jsp").forward(request, response);
         } catch (IOException | ServletException ex) {
             Logger.getLogger(LoginUsuServlet.class.getName()).log(Level.SEVERE, null, ex);

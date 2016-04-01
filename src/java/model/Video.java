@@ -9,50 +9,50 @@ package model;
  *
  * @author Marc
  */
-
+import java.math.BigDecimal;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="VIDEOS")
+@Table(name = "VIDEOS")
 public class Video {
-   
+
     @Id
-    @Column(name = "ID")
-    private String id;
-    
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "ID") 
+    private Long id;
+
     @Column(name = "TITULO")
     private String titulo;
-    
+
     @Column(name = "AUTOR")
     private String autor;
-    
+
     @Column(name = "FECHA_CREACION")
-    private String fechaCreacion;
-    
+    private Date fechaCreacion;
+
     @Column(name = "DURACION")
-    private String duracion;
-    
+    private Time duracion;
+
     @Column(name = "REPRODUCCIONES")
-    private String reproducciones;
-        
+    private Long reproducciones;
+
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    
+
     @Column(name = "FORMATO")
     private String formato;
-    
+
     public Video() {
-        
+
     }
 
-    public Video(String id, String titulo, String autor, String fechaCreacion, String duracion, String reproducciones, String descripcion, String formato) {
-        this.id = id;
+    public Video(String titulo, String autor, Date fechaCreacion, Time duracion, Long reproducciones, String descripcion, String formato) {
         this.titulo = titulo;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -62,11 +62,11 @@ public class Video {
         this.formato = formato;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -86,27 +86,27 @@ public class Video {
         this.autor = autor;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getDuracion() {
+    public Time getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(String duracion) {
+    public void setDuracion(Time duracion) {
         this.duracion = duracion;
     }
 
-    public String getReproducciones() {
+    public Long getReproducciones() {
         return reproducciones;
     }
 
-    public void setReproducciones(String reproducciones) {
+    public void setReproducciones(Long reproducciones) {
         this.reproducciones = reproducciones;
     }
 
@@ -125,8 +125,5 @@ public class Video {
     public void setFormato(String formato) {
         this.formato = formato;
     }
-    
-    
-    
-    
+
 }

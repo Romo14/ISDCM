@@ -9,9 +9,12 @@ package controller;
  *
  * @author Marc
  */
-
 import java.io.IOException;
-import model.Usuario;
+import java.util.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,38 +23,53 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import model.Video;
-import service.RegistroUsuService;
 import service.RegistroVideoService;
 
 @WebServlet(name = "registroVideo", urlPatterns = {"/registroVideo"})
-public class RegistroVideoServlet  extends HttpServlet {
-    
+public class RegistroVideoServlet extends HttpServlet {
+
     @Override
     public void doPost(HttpServletRequest request,
             HttpServletResponse response) {
-        
-        String id = request.getParameter("id");
+
         String titulo = request.getParameter("titulo");
         String autor = request.getParameter("autor");
-        String fechaCreacion = request.getParameter("fechaCreacion");
-        String duracion = request.getParameter("duracion");
-        String reproducciones = request.getParameter("reproducciones");
+        String fechaCreacionString = request.getParameter("fechaCreacion");
+        String duracionString = request.getParameter("duracion");
         String descripcion = request.getParameter("descripcion");
         String formato = request.getParameter("formato");
 
         String message = "";
-        Video video = new Video(id, titulo, autor, fechaCreacion, duracion, reproducciones, descripcion, formato);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fechaCreacion = null;
+        SimpleDateFormat tdf = new SimpleDateFormat("hh:mm:ss");
+        long ms = 0;
+        try {
+            ms = tdf.parse(duracionString).getTime();
+            fechaCreacion = (Date) df.parse(fechaCreacionString);
+        } catch (ParseException ex) {
+            Logger.getLogger(RegistroVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        java.sql.Date fechaCreacionSql = new java.sql.Date(fechaCreacion.getTime());
+        Time duracion = new Time(ms);
+        Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
         RegistroVideoService registerService = new RegistroVideoService();
         message = registerService.registrar(video);
-       
-        request.setAttribute("message", message);
-   
+
+        
+        try {
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("videoManagement.html").forward(request, response);
+        } catch (IOException | ServletException ex) {
+            Logger.getLogger(RegistroUsuServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
     //També s'ha de fer un doGet per consultes de video
     @Override
     public void doGet(HttpServletRequest request,
             HttpServletResponse response) {
     }
-    
+
 }

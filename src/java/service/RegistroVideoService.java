@@ -11,9 +11,7 @@ package service;
  */
 
 import hibernate.util.HibernateUtil;
-import model.Usuario;
 import model.Video;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -27,42 +25,18 @@ public class RegistroVideoService {
         try {
             tx = session.getTransaction();
             tx.begin();
-            session.saveOrUpdate(video);
+            session.save(video);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
-            return e.getMessage();
+            return "ko";
         } finally {
             session.close();
         }
-        return "Registro realizado correctamente";
+        return "ok";
     }
 
-    /*public boolean existeUsuario(Usuario usuario) {
-        Session session = HibernateUtil.openSession();
-        boolean result = false;
-        Transaction tx = null;
-        try {
-            tx = session.getTransaction();
-            tx.begin();
-            Query query = session.createQuery("from Usuario where nickName='" + usuario.getUsername() + "'");
-            Usuario u = (Usuario) query.uniqueResult();
-            tx.commit();
-            if (u != null) {
-                result = true;
-            }
-        } catch (Exception ex) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw ex;
-        } finally {
-            session.close();
-        }
-        return result;
-
-    }*/
     
 }
