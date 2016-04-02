@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% Boolean result = (Boolean) request.getAttribute("message");%>
+<% String result = (String) request.getAttribute("message");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +19,7 @@
         <div id="ok" class="message-success" style="display: none;">Video registrado correctamente</div>
         <div id="ko" class="message-error" style="display: none;">Error al registrar el video</div>
         <div id="mystyle" class="myform" title="Registro Videos">
-            <form id="formVideo" name="formVideo" action = "registroVideo" method = "post" onsubmit="return checkPassword(this.password.value)">
+            <form id="formVideo" name="formVideo" action = "registroVideo" method = "post" >
                 <h1>Registro de videos</h1>
                 <p>Por favor, introduzca la información del nuevo video<br><br>
                     <label>Titulo</label>
@@ -29,7 +29,7 @@
                     <label>Descripcion</label>
                     <input type="text" name="descripcion" required maxlength="255"><br>
                     <label>Duracion</label>
-                    <input type="time" name="duracion" step="1"><br>
+                    <input type="time" name="duracion" required step="1"><br>
                     <label>Formato</label> 
                     <input type="text" name="formato" required maxlength="5"><br>
                     <label>Fecha de creacion</label>

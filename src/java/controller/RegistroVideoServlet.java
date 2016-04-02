@@ -59,7 +59,7 @@ public class RegistroVideoServlet extends HttpServlet {
         
         try {
             request.setAttribute("message", message);
-            request.getRequestDispatcher("videoManagement.html").forward(request, response);
+            request.getRequestDispatcher("videoManagement.jsp").forward(request, response);
         } catch (IOException | ServletException ex) {
             Logger.getLogger(RegistroUsuServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
