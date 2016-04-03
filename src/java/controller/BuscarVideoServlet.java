@@ -7,59 +7,28 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Video;
+import service.GestionVideoService;
 
 /**
  *
  * @author Oriol-Sony Vaio
  */
-@WebServlet(name = "BuscarVideoServlet", urlPatterns = {"/BuscarVideoServlet"})
+@WebServlet(name = "buscarVideo", urlPatterns = {"/buscarVideo"})
 public class BuscarVideoServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BuscarVideoServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BuscarVideoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -72,17 +41,58 @@ public class BuscarVideoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String titulo = request.getParameter("tituloBusqueda");
+        String autor = request.getParameter("autorBusqueda");
+        String fechaCreacionString = request.getParameter("fechaCreacionBusqueda");
+        String duracionString = request.getParameter("duracionBusqueda");
+        String descripcion = request.getParameter("descripcionBusqueda");
+        String formato = request.getParameter("formatoBusqueda");
+
+        java.util.Date fechaCreacion = null;
+        java.sql.Date fechaCreacionSql = null;
+        if (fechaCreacionString != null) {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+            try {
+                fechaCreacion = (Date) df.parse(fechaCreacionString);
+            } catch (ParseException ex) {
+                Logger.getLogger(BuscarVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            fechaCreacionSql = new java.sql.Date(fechaCreacion.getTime());
+        }
+        long ms = 0;
+        Time duracion = null;
+        if (duracionString != null && !duracionString.equals("")) {
+            SimpleDateFormat tdf = new SimpleDateFormat("hh:mm:ss");
+
+            try {
+                ms = tdf.parse(duracionString).getTime();
+
+            } catch (ParseException ex) {
+                Logger.getLogger(RegistroVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            duracion = new Time(ms);
+        }
+
+        Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
+        GestionVideoService gestionVideoService = new GestionVideoService();
+        List<Video> videos = gestionVideoService.buscar(video);
+        request.setAttribute("videos", videos);
+        request.setAttribute("table", "mostrar");
+        storeInRequest(request, "tituloBusqueda");
+        storeInRequest(request, "autorBusqueda");
+        storeInRequest(request, "fechaCreacionBusqueda");
+        storeInRequest(request, "duracionBusqueda");
+        storeInRequest(request, "descripcionBusqueda");
+        storeInRequest(request, "formatoBusqueda");
+        request.getRequestDispatcher("videoManagement.jsp").forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    private void storeInRequest(HttpServletRequest request, String param) {
+        String val = request.getParameter(param);
+        if (param != null && !param.isEmpty()) {
+            System.out.println(val);
+            request.setAttribute(param, val);
+        }
+    }
 }

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import model.Video;
-import service.RegistroVideoService;
+import service.GestionVideoService;
 
 @WebServlet(name = "registroVideo", urlPatterns = {"/registroVideo"})
 public class RegistroVideoServlet extends HttpServlet {
@@ -39,6 +39,10 @@ public class RegistroVideoServlet extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         String formato = request.getParameter("formato");
 
+        if(duracionString.length() == 5){
+            duracionString += ":00";
+        }
+        
         String message = "";
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date fechaCreacion = null;
@@ -53,8 +57,8 @@ public class RegistroVideoServlet extends HttpServlet {
         java.sql.Date fechaCreacionSql = new java.sql.Date(fechaCreacion.getTime());
         Time duracion = new Time(ms);
         Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
-        RegistroVideoService registerService = new RegistroVideoService();
-        message = registerService.registrar(video);
+        GestionVideoService gestionVideoService = new GestionVideoService();
+        message = gestionVideoService.registrar(video);
 
         
         try {
