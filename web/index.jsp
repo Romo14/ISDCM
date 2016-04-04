@@ -1,4 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 04/04/2016, 17:48:10
+    Author     : Oriol-Sony Vaio
+--%>
 
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -7,6 +14,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+
+        <% String usuario = (String) session.getAttribute("usuario");
+            System.out.println(usuario);
+            if (usuario != null) {
+                response.sendRedirect("videoManagement.jsp");
+                return;
+            }
+        %>
+
         <div id="mystyle" class="myform" title="Log in">
             <form id="LoginForm" class="myform" name="form" action = "login" method = "post">
                 <h1>Log in</h1>
@@ -51,5 +67,3 @@
         </script>
     </body>
 </html>
-
-

@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,9 +19,14 @@
 
     </head>
     <body>
+
         <div id="ok" class="message-success" style="display: none">Video registrado correctamente</div>
         <div id="ko" class="message-error" style="display: none">Error al registrar el video</div>
-        <div style="text-align: center;">
+        <div style="float: right; padding-right: 40px">
+            <%@include file="userInfo.jsp" %>
+        </div>
+        <br>
+        <div style="text-align: center">
             <div id="mystyle" class="container" title="Registro Videos" style="display: inline-block; vertical-align: top;">
                 <h1>Registro de videos</h1>
                 <p>Por favor, introduzca la información del nuevo vídeo:<br>
