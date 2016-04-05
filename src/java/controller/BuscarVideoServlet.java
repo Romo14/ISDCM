@@ -90,7 +90,6 @@ public class BuscarVideoServlet extends HttpServlet {
     private void storeInRequest(HttpServletRequest request, String param) {
         String val = request.getParameter(param);
         if (param != null && !param.isEmpty()) {
-            System.out.println(val);
             request.setAttribute(param, val);
         }
     }

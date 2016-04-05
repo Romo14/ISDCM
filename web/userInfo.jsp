@@ -13,7 +13,6 @@
     </head>
     <body>
         <% String usuario = (String) session.getAttribute("usuario");
-            System.out.println(usuario);
             if (usuario == null) {
                 response.sendRedirect("index.jsp");
                 return;
