@@ -19,7 +19,7 @@
 
             <h2>${message}</h2>
             <% if (!result) {%>
-            <a href="index.html">Volver a la página de registro</a>
+            <a href="index.jsp">Volver a la página de registro</a>
             <%} else {%>
             <a href="videoManagement.jsp">Continuar</a>
             <%}%>

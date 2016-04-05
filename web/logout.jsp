@@ -15,8 +15,8 @@
 
         <div id="mystyle" class="login" style="text-align: center;">
 
-            El usuario '<%=request.getSession().getAttribute("usuario")%>' ha cerrado la sesion.
-
+            <h2>El usuario '<%=request.getSession().getAttribute("usuario")%>' ha cerrado la sesion.
+            </h2> 
             <% session.invalidate();%>
 
             <br/><br/>
