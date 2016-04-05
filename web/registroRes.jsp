@@ -5,13 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/includes/includes-css-js.jsp" %>
 <% Boolean result = (Boolean) request.getAttribute("result");%>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
         <title>Resultado</title>
     </head>
     <body>

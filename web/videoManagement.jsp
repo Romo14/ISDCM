@@ -5,17 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@include file="/includes/includes-css-js.jsp" %>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro y consulta de videos</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 
     </head>
     <body>
@@ -26,7 +23,7 @@
             <%@include file="userInfo.jsp" %>
         </div>
         <br>
-        <div style="text-align: center">
+        <div  style="text-align: center">
             <div id="mystyle" class="container" title="Registro Videos" style="display: inline-block; vertical-align: top;">
                 <h1>Registro de videos</h1>
                 <p>Por favor, introduzca la información del nuevo vídeo:<br>
@@ -107,6 +104,7 @@
         <script type="text/javascript">
 
             window.onload = function () {
+
                 var okDiv = document.getElementById("ok");
                 var koDiv = document.getElementById("ko");
                 if ('<c:out value="${message}" />' == "ok") {

@@ -5,15 +5,11 @@
 --%>
 
 <%@ page session="true"%>
-
+<%@include file="/includes/includes-css-js.jsp" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro y consulta de videos</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
     </head>
     <body>
 

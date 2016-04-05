@@ -6,6 +6,7 @@
 
 <%@page import="model.Usuario"%>
 <%@page language="java"%>
+<%@include file="/includes/includes-css-js.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
