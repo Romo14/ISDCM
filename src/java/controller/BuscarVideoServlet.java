@@ -19,8 +19,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.WebServiceRef;
 import model.Video;
 import service.GestionVideoService;
+import ws.BuscarVideo_Service;
+import ws.Videos;
 
 /**
  *
@@ -28,6 +31,9 @@ import service.GestionVideoService;
  */
 @WebServlet(name = "buscarVideo", urlPatterns = {"/buscarVideo"})
 public class BuscarVideoServlet extends HttpServlet {
+
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/BuscarVideo/BuscarVideo.wsdl")
+    private BuscarVideo_Service service;
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -74,8 +80,10 @@ public class BuscarVideoServlet extends HttpServlet {
         }
 
         Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
-        GestionVideoService gestionVideoService = new GestionVideoService();
-        List<Video> videos = gestionVideoService.buscar(video);
+        //GestionVideoService gestionVideoService = new GestionVideoService();
+        //List<Video> videos = gestionVideoService.buscar(video);
+        List<Videos> videos = buscarPorAutor("yo");
+        System.out.println(videos.toString());
         request.setAttribute("videos", videos);
         request.setAttribute("table", "mostrar");
         storeInRequest(request, "tituloBusqueda");
@@ -93,4 +101,13 @@ public class BuscarVideoServlet extends HttpServlet {
             request.setAttribute(param, val);
         }
     }
+
+    private java.util.List<ws.Videos> buscarPorAutor(java.lang.String autor) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        ws.BuscarVideo port = service.getBuscarVideoPort();
+        return port.buscarPorAutor(autor);
+    }
+    
+    
 }
