@@ -53,7 +53,7 @@ public class BuscarVideoServlet extends HttpServlet {
         String descripcion = request.getParameter("descripcionBusqueda");
         String formato = request.getParameter("formatoBusqueda");
 
-        java.util.Date fechaCreacion = null;
+        /*java.util.Date fechaCreacion = null;
         java.sql.Date fechaCreacionSql = null;
         if (fechaCreacionString != null) {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,8 +64,8 @@ public class BuscarVideoServlet extends HttpServlet {
                 Logger.getLogger(BuscarVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             fechaCreacionSql = new java.sql.Date(fechaCreacion.getTime());
-        }
-        long ms = 0;
+        }*/
+        /*long ms = 0;
         Time duracion = null;
         if (duracionString != null && !duracionString.equals("")) {
             SimpleDateFormat tdf = new SimpleDateFormat("hh:mm:ss");
@@ -77,13 +77,13 @@ public class BuscarVideoServlet extends HttpServlet {
                 Logger.getLogger(RegistroVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             duracion = new Time(ms);
-        }
+        }*/
 
-        Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
+        //Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
         //GestionVideoService gestionVideoService = new GestionVideoService();
         //List<Video> videos = gestionVideoService.buscar(video);
-        List<Videos> videos = buscarPorAutor("yo");
-        System.out.println(videos.toString());
+        List<Videos> videos = buscarVideos(titulo,autor,fechaCreacionString);
+  
         request.setAttribute("videos", videos);
         request.setAttribute("table", "mostrar");
         storeInRequest(request, "tituloBusqueda");
@@ -102,12 +102,18 @@ public class BuscarVideoServlet extends HttpServlet {
         }
     }
 
-    private java.util.List<ws.Videos> buscarPorAutor(java.lang.String autor) {
+    private java.util.List<ws.Videos> buscarVideos(java.lang.String titulo, java.lang.String autor, java.lang.String fecha) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         ws.BuscarVideo port = service.getBuscarVideoPort();
-        return port.buscarPorAutor(autor);
+        return port.buscarVideos(titulo, autor, fecha);
     }
-    
+
+
+ 
+
+
+
+
     
 }

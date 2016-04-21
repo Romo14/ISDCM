@@ -4,13 +4,19 @@
 
 <xs:element name="buscarPorAutorResponse" type="tns:buscarPorAutorResponse"/>
 
-<xs:complexType name="buscarPorAutor">
+<xs:element name="buscarVideos" type="tns:buscarVideos"/>
+
+<xs:element name="buscarVideosResponse" type="tns:buscarVideosResponse"/>
+
+<xs:complexType name="buscarVideos">
 <xs:sequence>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
 <xs:element name="autor" type="xs:string" minOccurs="0"/>
+<xs:element name="fecha" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="buscarPorAutorResponse">
+<xs:complexType name="buscarVideosResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:videos" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
@@ -35,5 +41,17 @@
 
 <xs:complexType name="date">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="buscarPorAutor">
+<xs:sequence>
+<xs:element name="autor" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarPorAutorResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:videos" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
 </xs:complexType>
 </xs:schema>

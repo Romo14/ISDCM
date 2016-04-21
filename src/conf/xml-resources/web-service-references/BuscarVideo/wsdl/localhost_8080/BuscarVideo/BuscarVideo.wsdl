@@ -4,6 +4,12 @@
 <xsd:import namespace="http://WS/" schemaLocation="http://localhost:8080/BuscarVideo/BuscarVideo?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="buscarVideos">
+<part name="parameters" element="tns:buscarVideos"/>
+</message>
+<message name="buscarVideosResponse">
+<part name="parameters" element="tns:buscarVideosResponse"/>
+</message>
 <message name="buscarPorAutor">
 <part name="parameters" element="tns:buscarPorAutor"/>
 </message>
@@ -11,6 +17,10 @@
 <part name="parameters" element="tns:buscarPorAutorResponse"/>
 </message>
 <portType name="BuscarVideo">
+<operation name="buscarVideos">
+<input wsam:Action="http://WS/BuscarVideo/buscarVideosRequest" message="tns:buscarVideos"/>
+<output wsam:Action="http://WS/BuscarVideo/buscarVideosResponse" message="tns:buscarVideosResponse"/>
+</operation>
 <operation name="buscarPorAutor">
 <input wsam:Action="http://WS/BuscarVideo/buscarPorAutorRequest" message="tns:buscarPorAutor"/>
 <output wsam:Action="http://WS/BuscarVideo/buscarPorAutorResponse" message="tns:buscarPorAutorResponse"/>
@@ -18,6 +28,15 @@
 </portType>
 <binding name="BuscarVideoPortBinding" type="tns:BuscarVideo">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="buscarVideos">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="buscarPorAutor">
 <soap:operation soapAction=""/>
 <input>

@@ -60,7 +60,7 @@
                     <label>Formato</label> 
                     <input type="text" name="formatoBusqueda"  maxlength="5" value="${formatoBusqueda}"><br>
                     <label>Fecha de creacion</label>
-                    <input type="date" id="fechaCreacionBusqueda" name="fechaCreacion" value="${fechaCreacionBusqueda}"><br>
+                    <input type="date" name="fechaCreacionBusqueda" value="${fechaCreacionBusqueda}"><br>
                     <button type="submit">Buscar videos</button>
                 </form>
             </div>
