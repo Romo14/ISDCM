@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://WS/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://WS/">
 
-<xs:element name="buscarPorAutor" type="tns:buscarPorAutor"/>
-
-<xs:element name="buscarPorAutorResponse" type="tns:buscarPorAutorResponse"/>
-
 <xs:element name="buscarVideos" type="tns:buscarVideos"/>
 
 <xs:element name="buscarVideosResponse" type="tns:buscarVideosResponse"/>
@@ -26,32 +22,12 @@
 <xs:sequence>
 <xs:element name="autor" type="xs:string" minOccurs="0"/>
 <xs:element name="descripcion" type="xs:string" minOccurs="0"/>
-<xs:element name="duracion" type="tns:time" minOccurs="0"/>
-<xs:element name="fechaCreacion" type="tns:date" minOccurs="0"/>
+<xs:element name="duracion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaCreacion" type="xs:string" minOccurs="0"/>
 <xs:element name="formato" type="xs:string" minOccurs="0"/>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
 <xs:element name="reproducciones" type="xs:long" minOccurs="0"/>
 <xs:element name="titulo" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="time">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="date">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="buscarPorAutor">
-<xs:sequence>
-<xs:element name="autor" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="buscarPorAutorResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:videos" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

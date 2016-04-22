@@ -53,12 +53,6 @@
                     <input type="text" name="tituloBusqueda"  maxlength="100" value="${tituloBusqueda}"><br>
                     <label>Autor</label>
                     <input type="text" name="autorBusqueda"  maxlength="100" value="${autorBusqueda}"><br>
-                    <label>Descripcion</label>
-                    <input type="text" name="descripcionBusqueda"  maxlength="255" value="${descripcionBusqueda}"><br>
-                    <label>Duracion</label>
-                    <input type="time" name="duracionBusqueda"  step="1" value="${duracionBusqueda}"><br>
-                    <label>Formato</label> 
-                    <input type="text" name="formatoBusqueda"  maxlength="5" value="${formatoBusqueda}"><br>
                     <label>Fecha de creacion</label>
                     <input type="date" name="fechaCreacionBusqueda" value="${fechaCreacionBusqueda}"><br>
                     <button type="submit">Buscar videos</button>

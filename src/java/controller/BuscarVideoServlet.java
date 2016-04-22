@@ -6,22 +6,13 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
-import model.Video;
-import service.GestionVideoService;
 import ws.BuscarVideo_Service;
 import ws.Videos;
 
@@ -110,7 +101,6 @@ public class BuscarVideoServlet extends HttpServlet {
     }
 
 
- 
 
 
 
