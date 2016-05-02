@@ -47,12 +47,15 @@ public class Video {
 
     @Column(name = "FORMATO")
     private String formato;
+    
+    @Column(name = "URI")
+    private String uri;
 
     public Video() {
 
     }
 
-    public Video(String titulo, String autor, Date fechaCreacion, Time duracion, Long reproducciones, String descripcion, String formato) {
+    public Video(String titulo, String autor, Date fechaCreacion, Time duracion, Long reproducciones, String descripcion, String formato, String uri) {
         this.titulo = titulo;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -60,6 +63,7 @@ public class Video {
         this.reproducciones = reproducciones;
         this.descripcion = descripcion;
         this.formato = formato;
+        this.uri = uri;
     }
 
     public Long getId() {
@@ -124,6 +128,14 @@ public class Video {
 
     public void setFormato(String formato) {
         this.formato = formato;
+    }
+    
+    public String getUri(){
+        return this.uri;
+    }
+    
+    public void setUri(String uri){
+        this.uri=uri;
     }
 
 }

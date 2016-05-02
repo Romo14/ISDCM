@@ -40,9 +40,9 @@ public class BuscarVideoServlet extends HttpServlet {
         String titulo = request.getParameter("tituloBusqueda");
         String autor = request.getParameter("autorBusqueda");
         String fechaCreacionString = request.getParameter("fechaCreacionBusqueda");
-        String duracionString = request.getParameter("duracionBusqueda");
+        /*String duracionString = request.getParameter("duracionBusqueda");
         String descripcion = request.getParameter("descripcionBusqueda");
-        String formato = request.getParameter("formatoBusqueda");
+        String formato = request.getParameter("formatoBusqueda");*/
 
         /*java.util.Date fechaCreacion = null;
         java.sql.Date fechaCreacionSql = null;
@@ -99,6 +99,8 @@ public class BuscarVideoServlet extends HttpServlet {
         ws.BuscarVideo port = service.getBuscarVideoPort();
         return port.buscarVideos(titulo, autor, fecha);
     }
+
+
 
 
 

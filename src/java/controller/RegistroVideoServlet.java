@@ -38,6 +38,7 @@ public class RegistroVideoServlet extends HttpServlet {
         String duracionString = request.getParameter("duracion");
         String descripcion = request.getParameter("descripcion");
         String formato = request.getParameter("formato");
+        String uri = request.getParameter("uri");
 
         if(duracionString.length() == 5){
             duracionString += ":00";
@@ -56,7 +57,7 @@ public class RegistroVideoServlet extends HttpServlet {
         }
         java.sql.Date fechaCreacionSql = new java.sql.Date(fechaCreacion.getTime());
         Time duracion = new Time(ms);
-        Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato);
+        Video video = new Video(titulo, autor, fechaCreacionSql, duracion, (long) 0, descripcion, formato, uri);
         GestionVideoService gestionVideoService = new GestionVideoService();
         message = gestionVideoService.registrar(video);
 

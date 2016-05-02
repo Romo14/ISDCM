@@ -33,14 +33,16 @@
                     <input type="text" name="titulo" required maxlength="100"><br>
                     <label>Autor</label>
                     <input type="text" name="autor" required maxlength="100"><br>
-                    <label>Descripcion</label>
+                    <label>Descripción</label>
                     <input type="text" name="descripcion" required maxlength="255"><br>
-                    <label>Duracion</label>
+                    <label>Duración</label>
                     <input type="time" name="duracion" required step="3" value="00:00:00"><br>
                     <label>Formato</label> 
                     <input type="text" name="formato" required maxlength="5"><br>
-                    <label>Fecha de creacion</label>
+                    <label>Fecha de creación</label>
                     <input type="date" id="fechaCreacion" name="fechaCreacion"><br>
+                    <label>URI</label>
+                    <input type="text" name="uri" required maxlength="255"><br>
                     <button type="submit">Registrar video</button>
                 </form>
 
@@ -49,40 +51,50 @@
                 <h1>Búsqueda de videos</h1>
                 <p>Filtrar por atributos:<br>
                 <form id="buscarVideoForm" name="buscarVideoForm" action = "buscarVideo" method = "post" >
-                    <label>Titulo</label>
+                    <label>Título</label>
                     <input type="text" name="tituloBusqueda"  maxlength="100" value="${tituloBusqueda}"><br>
                     <label>Autor</label>
                     <input type="text" name="autorBusqueda"  maxlength="100" value="${autorBusqueda}"><br>
-                    <label>Fecha de creacion</label>
+                    <label>Fecha de creación</label>
                     <input type="date" name="fechaCreacionBusqueda" value="${fechaCreacionBusqueda}"><br>
                     <button type="submit">Buscar videos</button>
                 </form>
             </div>
             <c:if test="${table == 'mostrar'}">
-                <div id="mystyle" class="container" style="width: 836px">
+                <div id="mystyle" class="container" style="width: 100%">
                     <h1>Resultado de la búsqueda</h1>
-                    <table id="buscarVideoTable" style="width: 100%">
+                    <table id="buscarVideoTable" style="width: 100%;">
                         <tr style="background-color: #D9AB71">
-                            <td>Id</td>
-                            <td>Título</td>
-                            <td>Autor</td>
-                            <td>Descripción</td>
-                            <td>Fecha creación</td>
-                            <td>Duración</td>
-                            <td>Reproducciones</td>
-                            <td>Formato</td>
+                            <th>Id</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Descripción</th>
+                            <th>Fecha creación</th>
+                            <th>Duración</th>
+                            <th>Reproducciones</th>
+                            <th>Formato</th>
+                            <th>uri</th>
+                            <th>Reproducción</th>
                         </tr>
                         <c:if test="${fn:length(videos) gt 0}">
                             <c:forEach items="${videos}" var="video">
                                 <tr>
-                                    <td>${video.id}</td>
-                                    <td>${video.titulo}</td>
-                                    <td>${video.autor}</td>
-                                    <td>${video.descripcion}</td>
-                                    <td>${video.fechaCreacion}</td>
-                                    <td>${video.duracion}</td>
-                                    <td>${video.reproducciones}</td>
-                                    <td>${video.formato}</td>
+                                    <form id="reproducirVideoForm" action="reproducirVideo" method="get">
+                                        <td>${video.id}</td>
+                                        <td>${video.titulo}</td>
+                                        <input type="text" name="titulo" value="${video.titulo}" style="visibility: hidden"></input>
+                                        <td>${video.autor}</td>
+                                        <td>${video.descripcion}</td>
+                                        <td>${video.fechaCreacion}</td>
+                                        <td>${video.duracion}</td>
+                                        <td>${video.reproducciones}</td>
+                                        <td>${video.formato}</td>
+                                        <td id="ellipsis">${video.uri}</td>
+                                        <input type="text" name="uriToPlay" value="${video.uri}" style="visibility: hidden"></input>
+                                        <td>
+                                            <button style="margin: auto; display: block" type="submit">ver</button>
+                                        </td>
+                                    </form>
                                 </tr>
                             </c:forEach>
                         </c:if>
@@ -151,8 +163,10 @@
                 console.log(data);
                 _dat.value = data;
             }
-            ;
+            
             setInputDate("#fechaCreacion");
+            
+}
 
 
         </script>
