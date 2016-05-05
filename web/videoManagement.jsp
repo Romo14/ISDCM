@@ -79,22 +79,24 @@
                         <c:if test="${fn:length(videos) gt 0}">
                             <c:forEach items="${videos}" var="video">
                                 <tr>
-                                    <form id="reproducirVideoForm" action="reproducirVideo" method="get">
-                                        <td>${video.id}</td>
-                                        <td>${video.titulo}</td>
-                                        <input type="text" name="titulo" value="${video.titulo}" style="visibility: hidden"></input>
-                                        <td>${video.autor}</td>
-                                        <td>${video.descripcion}</td>
-                                        <td>${video.fechaCreacion}</td>
-                                        <td>${video.duracion}</td>
-                                        <td>${video.reproducciones}</td>
-                                        <td>${video.formato}</td>
-                                        <td id="ellipsis">${video.uri}</td>
-                                        <input type="text" name="uriToPlay" value="${video.uri}" style="visibility: hidden"></input>
-                                        <td>
-                                            <button style="margin: auto; display: block" type="submit">ver</button>
-                                        </td>
-                                    </form>
+                                <form id="reproducirVideoForm" action="reproducirVideo" method="get">
+                                    <td>${video.id}</td>
+                                    <td>${video.titulo}</td>
+                                    
+                                    <td>${video.autor}</td>
+                                    <td>${video.descripcion}</td>
+                                    <td>${video.fechaCreacion}</td>
+                                    <td>${video.duracion}</td>
+                                    <td>${video.reproducciones}</td>
+                                    <td>${video.formato}</td>
+                                    <td id="ellipsis">${video.uri}</td>
+                                    <input type="text" name="titulo" value="${video.titulo}" style="visibility: hidden"></input>
+                                    <input type="text" name="id" value="${video.id}" style="visibility: hidden"></input>
+                                    <input type="text" name="uriToPlay" value="${video.uri}" style="visibility: hidden"></input>
+                                    <td>
+                                        <button style="margin: auto; display: block" type="submit">ver</button>
+                                    </td>
+                                </form>
                                 </tr>
                             </c:forEach>
                         </c:if>
@@ -162,11 +164,11 @@
                 data = y + "-" + m + "-" + d;
                 console.log(data);
                 _dat.value = data;
+
+
+                setInputDate("#fechaCreacion");
             }
             
-            setInputDate("#fechaCreacion");
-            
-}
 
 
         </script>

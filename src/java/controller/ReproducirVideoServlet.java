@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import service.SumarReproduccionClient;
 
 /**
  *
@@ -37,7 +38,7 @@ public class ReproducirVideoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ReproducirVideoServlet</title>");            
+            out.println("<title>Servlet ReproducirVideoServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ReproducirVideoServlet at " + request.getContextPath() + "</h1>");
@@ -60,24 +61,28 @@ public class ReproducirVideoServlet extends HttpServlet {
             throws ServletException, IOException {
         String uri = request.getParameter("uriToPlay");
         String titulo = request.getParameter("titulo");
-        
+
         boolean localVideo = isLocalFile(uri);
-        
+        SumarReproduccionClient client = new SumarReproduccionClient();
+        long id = Long.valueOf(request.getParameter("id"));
+        String resultado = client.sumarReproduccion(String.class, String.valueOf(id));
         request.setAttribute("localVideo", localVideo);
         request.setAttribute("uri", uri);
-        request.setAttribute("titulo", titulo);        
+        request.setAttribute("titulo", titulo);
         request.getRequestDispatcher("reproduccionVideo.jsp").forward(request, response);
-        
+
     }
-    
-     /** Whether the URL is a file in the local file system. */
-  public boolean isLocalFile(String path) {
-           System.out.println(path);
-   if (path.contains("http://") || path.contains("https://")){
-       System.out.println("no es local");
-       return false;
-   }
-          System.out.println("es local");
-   return true;
-  }
+
+    /**
+     * Whether the URL is a file in the local file system.
+     */
+    public boolean isLocalFile(String path) {
+        System.out.println(path);
+        if (path.contains("http://") || path.contains("https://")) {
+            System.out.println("no es local");
+            return false;
+        }
+        System.out.println("es local");
+        return true;
+    }
 }
