@@ -61,7 +61,7 @@
                 </form>
             </div>
             <c:if test="${table == 'mostrar'}">
-                <div id="mystyle" class="container" style="width: 100%">
+                <div id="mystyle" class="container" style="width: 835px">
                     <h1>Resultado de la búsqueda</h1>
                     <table id="buscarVideoTable" style="width: 100%;">
                         <tr style="background-color: #D9AB71">
@@ -73,8 +73,7 @@
                             <th>Duración</th>
                             <th>Reproducciones</th>
                             <th>Formato</th>
-                            <th>uri</th>
-                            <th>Reproducción</th>
+                            <th>Ver</th>
                         </tr>
                         <c:if test="${fn:length(videos) gt 0}">
                             <c:forEach items="${videos}" var="video">
@@ -82,17 +81,15 @@
                                 <form id="reproducirVideoForm" action="reproducirVideo" method="get">
                                     <td>${video.id}</td>
                                     <td>${video.titulo}</td>
-                                    
                                     <td>${video.autor}</td>
                                     <td>${video.descripcion}</td>
                                     <td>${video.fechaCreacion}</td>
                                     <td>${video.duracion}</td>
                                     <td>${video.reproducciones}</td>
                                     <td>${video.formato}</td>
-                                    <td id="ellipsis">${video.uri}</td>
-                                    <input type="text" name="titulo" value="${video.titulo}" style="visibility: hidden"></input>
-                                    <input type="text" name="id" value="${video.id}" style="visibility: hidden"></input>
-                                    <input type="text" name="uriToPlay" value="${video.uri}" style="visibility: hidden"></input>
+                                    <input hidden="true" type="text" name="titulo" value="${video.titulo}"></input>
+                                    <input hidden="true" type="text" name="id" value="${video.id}" style="visibility: hidden"></input>
+                                    <input hidden="true" type="text" name="uriToPlay" value="${video.uri}" style="visibility: hidden"></input>
                                     <td>
                                         <button style="margin: auto; display: block" type="submit">ver</button>
                                     </td>
